@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Apps do projeto
     'rest_framework',
     'jogadores',  # Registra a aplicação jogadores
+    'django_filters',
 ]
 
 MIDDLEWARE = [
