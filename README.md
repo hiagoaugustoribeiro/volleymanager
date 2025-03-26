@@ -16,7 +16,11 @@ Controle de Versão: Git e GitHub
 
 🎯 Funcionalidades
 
-✅ Cadastro, edição e exclusão de jogadores ✅ Listagem de jogadores cadastrados ✅ Seleção de posição e status do jogador ✅ Modo claro e escuro ✅ API REST para integração
+✅ Cadastro, edição e exclusão de jogadores 
+✅ Listagem de jogadores cadastrados 
+✅ Seleção de posição e status do jogador 
+✅ Modo claro e escuro 
+✅ API REST para integração
 
 📂 Estrutura do Projeto
 
