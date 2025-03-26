@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AdminPanel = () => {
+  // Estados para armazenar os dados dos jogadores e informações do formulário
   const [jogadores, setJogadores] = useState([]);
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
-  const [posicao, setPosicao] = useState("");
+  const [posicao, setPosicao] = useState("levantador"); // Valor padrão
   const [status, setStatus] = useState("ativo");
   const [contato, setContato] = useState("");
   const [editando, setEditando] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
+  // Efeito para buscar os jogadores quando o componente é carregado
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/jogadores/")
@@ -18,16 +20,19 @@ const AdminPanel = () => {
       .catch((error) => console.error("Erro ao buscar jogadores:", error));
   }, []);
 
+    // Função para adicionar ou editar um jogador
   const handleSubmit = async (event) => {
     event.preventDefault();
     const jogadorData = { nome, idade, posicao, status, contato };
 
     try {
       if (editando) {
+         // Atualiza um jogador existente
         await axios.put(`http://127.0.0.1:8000/api/jogadores/${editando}/`, jogadorData);
         setJogadores(jogadores.map(j => (j.id === editando ? { id: editando, ...jogadorData } : j)));
         setEditando(null);
       } else {
+         // Adiciona um novo jogador
         const response = await axios.post("http://127.0.0.1:8000/api/jogadores/", jogadorData);
         setJogadores([...jogadores, response.data]);
       }
@@ -100,6 +105,8 @@ const AdminPanel = () => {
 
       <form className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} mt-6 p-6 rounded-lg shadow-lg w-full max-w-2xl transition-all`} onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold mb-4">{editando ? "Editar Jogador" : "Adicionar Jogador"}</h2>
+
+        {/* Campo de seleção para a posição do jogador */}
         <div className="mb-4">
           <label className="block font-medium">Nome</label>
           <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
@@ -129,6 +136,8 @@ const AdminPanel = () => {
           <label className="block font-medium">Contato</label>
           <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Telefone ou e-mail" value={contato} onChange={(e) => setContato(e.target.value)} required />
         </div>
+
+        {/* Botão para adicionar ou atualizar jogador */}
         <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition">
           {editando ? "Atualizar" : "Adicionar"} Jogador
         </button>
