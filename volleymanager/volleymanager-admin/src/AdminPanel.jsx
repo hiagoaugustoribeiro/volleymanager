@@ -9,6 +9,7 @@ const AdminPanel = () => {
   const [status, setStatus] = useState("ativo");
   const [contato, setContato] = useState("");
   const [editando, setEditando] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     axios
@@ -60,11 +61,14 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
-      <h1 className="text-4xl font-extrabold text-blue-600 mb-6">Painel Administrativo</h1>
+    <div className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"} p-6 min-h-screen flex flex-col items-center transition-all`}>
+      <h1 className="text-4xl font-extrabold text-blue-500 mb-6">Painel Administrativo</h1>
+      <button onClick={() => setDarkMode(!darkMode)} className="mb-4 px-4 py-2 bg-gray-700 text-white rounded shadow-md transition">
+        {darkMode ? "Modo Claro" : "Modo Escuro"}
+      </button>
 
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">Jogadores Cadastrados</h2>
+      <div className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} p-6 rounded-lg shadow-lg w-full max-w-4xl transition-all`}>
+        <h2 className="text-2xl font-semibold mb-4">Jogadores Cadastrados</h2>
         <table className="w-full border-collapse border border-gray-300 rounded-lg overflow-hidden shadow-md">
           <thead className="bg-blue-500 text-white">
             <tr>
@@ -78,11 +82,11 @@ const AdminPanel = () => {
           </thead>
           <tbody>
             {jogadores.map((jogador) => (
-              <tr key={jogador.id} className="bg-gray-50 hover:bg-gray-100 transition">
+              <tr key={jogador.id} className={`${darkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-50 hover:bg-gray-100"} transition`}>
                 <td className="border p-3">{jogador.nome}</td>
                 <td className="border p-3">{jogador.idade}</td>
                 <td className="border p-3">{jogador.posicao}</td>
-                <td className="border p-3 text-green-600 font-bold">{jogador.status}</td>
+                <td className="border p-3 text-green-400 font-bold">{jogador.status}</td>
                 <td className="border p-3">{jogador.contato}</td>
                 <td className="border p-3">
                   <button onClick={() => handleEdit(jogador)} className="bg-yellow-500 text-white px-4 py-2 rounded mr-2">Editar</button>
@@ -94,23 +98,19 @@ const AdminPanel = () => {
         </table>
       </div>
 
-      <form className="mt-6 bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl" onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">{editando ? "Editar Jogador" : "Adicionar Jogador"}</h2>
+      <form className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} mt-6 p-6 rounded-lg shadow-lg w-full max-w-2xl transition-all`} onSubmit={handleSubmit}>
+        <h2 className="text-2xl font-semibold mb-4">{editando ? "Editar Jogador" : "Adicionar Jogador"}</h2>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium">Nome</label>
-          <input type="text" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Nome do jogador" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          <label className="block font-medium">Nome</label>
+          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Nome do jogador" value={nome} onChange={(e) => setNome(e.target.value)} required />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium">Idade</label>
-          <input type="number" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Idade" value={idade} onChange={(e) => setIdade(e.target.value)} required />
+          <label className="block font-medium">Idade</label>
+          <input type="number" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Idade" value={idade} onChange={(e) => setIdade(e.target.value)} required />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium">Posição</label>
-          <input type="text" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Posição" value={posicao} onChange={(e) => setPosicao(e.target.value)} required />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-medium">Contato</label>
-          <input type="text" className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Telefone ou e-mail" value={contato} onChange={(e) => setContato(e.target.value)} required />
+          <label className="block font-medium">Posição</label>
+          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Posição" value={posicao} onChange={(e) => setPosicao(e.target.value)} required />
         </div>
         <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition">
           {editando ? "Atualizar" : "Adicionar"} Jogador
