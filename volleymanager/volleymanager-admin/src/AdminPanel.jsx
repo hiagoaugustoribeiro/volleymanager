@@ -34,7 +34,7 @@ const AdminPanel = () => {
       alert("Jogador salvo com sucesso!");
       setNome("");
       setIdade("");
-      setPosicao("");
+      setPosicao("levantador");
       setStatus("ativo");
       setContato("");
     } catch (error) {
@@ -62,7 +62,7 @@ const AdminPanel = () => {
 
   return (
     <div className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"} p-6 min-h-screen flex flex-col items-center transition-all`}>
-      <h1 className="text-4xl font-extrabold text-blue-500 mb-6">Painel Administrativo</h1>
+      <h1 className="text-4xl font-extrabold text-blue-500 mb-6">Painel Administrativo Ace Volei</h1>
       <button onClick={() => setDarkMode(!darkMode)} className="mb-4 px-4 py-2 bg-gray-700 text-white rounded shadow-md transition">
         {darkMode ? "Modo Claro" : "Modo Escuro"}
       </button>
@@ -102,7 +102,7 @@ const AdminPanel = () => {
         <h2 className="text-2xl font-semibold mb-4">{editando ? "Editar Jogador" : "Adicionar Jogador"}</h2>
         <div className="mb-4">
           <label className="block font-medium">Nome</label>
-          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Nome do jogador" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
         </div>
         <div className="mb-4">
           <label className="block font-medium">Idade</label>
@@ -110,7 +110,24 @@ const AdminPanel = () => {
         </div>
         <div className="mb-4">
           <label className="block font-medium">Posição</label>
-          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Posição" value={posicao} onChange={(e) => setPosicao(e.target.value)} required />
+        <select className="w-full p-2 border rounded-lg bg-gray-200 text-black" value={posicao} onChange={(e) => setPosicao(e.target.value)} required>
+          <option value="levantador">Levantador</option>
+          <option value="ponteiro">Ponteiro</option>
+          <option value="oposto">Oposto</option>
+          <option value="central">Central</option>
+          <option value="libero">Líbero</option>
+        </select>
+        </div>
+        <div className="mb-4">
+          <label className="block font-medium">Status</label>
+          <select className="w-full p-2 border rounded-lg bg-gray-200 text-black" value={status} onChange={(e) => setStatus(e.target.value)} required>
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block font-medium">Contato</label>
+          <input type="text" className="w-full p-2 border rounded-lg bg-gray-200 text-black" placeholder="Telefone ou e-mail" value={contato} onChange={(e) => setContato(e.target.value)} required />
         </div>
         <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition">
           {editando ? "Atualizar" : "Adicionar"} Jogador
