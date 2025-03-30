@@ -4,10 +4,10 @@ VolleyManager - Sistema de Gestão para Times de Vôlei
 
 O VolleyManager é um sistema de gestão para times de vôlei, desenvolvido para facilitar o gerenciamento de jogadores, incluindo cadastro, atualização e controle de status e contatos. O projeto conta com um painel administrativo intuitivo e moderno.
 
-## 🔗 Link da aplicação (Frontend)
+🔗 Link da aplicação (Frontend)
 👉 [https://volleymanager-ib80dbdo2-hiago-augusto-ribeiros-projects.vercel.app/](https://volleymanager-ib80dbdo2-hiago-augusto-ribeiros-projects.vercel.app/)
 
-## 🎯 Objetivo
+🎯 Objetivo
 Aplicação inspirada e desenvolvida para uso real do time **Ace Vôlei**, com foco em controle de jogadores e gerenciamento simples e eficiente.
 
 Instagram do time: [@goacevoleibol](https://instagram.com/goacevoleibol)
