@@ -26,14 +26,12 @@ SECRET_KEY = 'django-insecure-ejod4ws94_if9^zp2#ty$=b#b2e9113o%wq&mv*t^=n75d^=s-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://volleymanager-jh9w.onrender.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    ["corsheaders"]
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,11 +42,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'jogadores',  # Registra a aplicação jogadores
     'django_filters',
-    'corsheaders',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
-MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,9 +54,15 @@ MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Durante desenvolvimento
+    "https://seuprojeto.vercel.app",  # Quando hospedar o frontend
+]
 
 ROOT_URLCONF = 'volleymanager.urls'
 
