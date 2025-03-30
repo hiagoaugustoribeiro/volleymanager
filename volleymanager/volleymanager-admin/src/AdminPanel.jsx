@@ -15,7 +15,7 @@ const AdminPanel = () => {
   // Efeito para buscar os jogadores quando o componente é carregado
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/jogadores/")
+      .get("https://volleymanager-jh9w.onrender.com/api/jogadores/")
       .then((response) => setJogadores(response.data))
       .catch((error) => console.error("Erro ao buscar jogadores:", error));
   }, []);
@@ -28,12 +28,12 @@ const AdminPanel = () => {
     try {
       if (editando) {
          // Atualiza um jogador existente
-        await axios.put(`http://127.0.0.1:8000/api/jogadores/${editando}/`, jogadorData);
+        await axios.put(`https://volleymanager-jh9w.onrender.com/api/jogadores/${editando}/`, jogadorData);
         setJogadores(jogadores.map(j => (j.id === editando ? { id: editando, ...jogadorData } : j)));
         setEditando(null);
       } else {
          // Adiciona um novo jogador
-        const response = await axios.post("http://127.0.0.1:8000/api/jogadores/", jogadorData);
+        const response = await axios.post("https://volleymanager-jh9w.onrender.com/api/jogadores/", jogadorData);
         setJogadores([...jogadores, response.data]);
       }
       alert("Jogador salvo com sucesso!");
@@ -58,7 +58,7 @@ const AdminPanel = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/jogadores/${id}/`);
+      await axios.delete(`https://volleymanager-jh9w.onrender.com/api/jogadores/${id}/`);
       setJogadores(jogadores.filter(jogador => jogador.id !== id));
     } catch (error) {
       console.error("Erro ao excluir jogador:", error);
