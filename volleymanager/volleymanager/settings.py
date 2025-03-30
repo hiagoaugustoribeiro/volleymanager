@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ejod4ws94_if9^zp2#ty$=b#b2e9113o%wq&mv*t^=n75d^=s-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://volleymanager-jh9w.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'volleymanager-jh9w.onrender.com']
 
 
 # Application definition
