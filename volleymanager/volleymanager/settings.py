@@ -91,12 +91,19 @@ WSGI_APPLICATION = 'volleymanager.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        
-        default='postgresql://volleymanager_user:Np9R8qF6LN0xYznqphnGIYPlvAnFLhc1@dpg-cvklab8dl3ps738aa4lg-a.oregon-postgres.render.com/volleymanager',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'dpg-cvklab8dl3ps738aa4lg-a.oregon-postgres.render.com',
+        'NAME': 'volleymanager',
+        'USER': 'volleymanager_user',
+        'PASSWORD': 'password',
+        'PORT': '',
+        'OPTIONS': {
+            'sslmode': 'require',    
+        },
+    }
 }
+
 
 
 # Password validation
