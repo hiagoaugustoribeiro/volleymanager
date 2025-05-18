@@ -63,6 +63,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Durante desenvolvimento
     "https://volleymanager-ib80dbdo2-hiago-augusto-ribeiros-projects.vercel.app",  
+    "https://volleymanager.vercel.app"
 ]
 
 ROOT_URLCONF = 'volleymanager.urls'
