@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,7 +62,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Durante desenvolvimento
-    "https://seuprojeto.vercel.app",  # Quando hospedar o frontend
+    "https://volleymanager-ib80dbdo2-hiago-augusto-ribeiros-projects.vercel.app",  
 ]
 
 ROOT_URLCONF = 'volleymanager.urls'
